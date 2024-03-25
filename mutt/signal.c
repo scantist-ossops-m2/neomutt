@@ -35,6 +35,8 @@
 #include "message.h"
 #include "signal2.h"
 
+int endwin(void);
+
 /// A set of signals used by mutt_sig_block(), mutt_sig_unblock()
 static sigset_t Sigset;
 /// A set of signals used by mutt_sig_block_system(), mutt_sig_unblock_system()
@@ -261,4 +263,18 @@ void mutt_sig_allow_interrupt(bool allow)
     sa.sa_flags |= SA_RESTART;
 #endif
   sigaction(SIGINT, &sa, NULL);
+}
+
+/**
+ * assertion_dump - Dump some debugging info before we stop the program
+ * @param file Source file
+ * @param line Line of source
+ * @param func Function
+ * @param cond Assertion condition
+ */
+void assertion_dump(const char *file, int line, const char *func, const char *cond)
+{
+  endwin();
+  show_backtrace();
+  printf("%s:%d:%s() -- assertion failed (%s)\n", file, line, func, cond);
 }
