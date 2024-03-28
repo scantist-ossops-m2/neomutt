@@ -62,7 +62,8 @@ static const struct ExpandoDefinition ComposeFormatDef[] = {
  */
 static struct ConfigDef ComposeVars[] = {
   // clang-format off
-  { "compose_format", DT_EXPANDO, IP "-- NeoMutt: Compose  [Approx. msg size: %l   Atts: %a]%>-", IP &ComposeFormatDef, NULL,
+  // L10N: $compose_format default format
+  { "compose_format", DT_EXPANDO|D_L10N_STRING, IP N_("-- NeoMutt: Compose  [Approx. msg size: %l   Atts: %a]%>-"), IP &ComposeFormatDef, NULL,
     "printf-like format string for the Compose panel's status bar"
   },
   { "compose_show_user_headers", DT_BOOL, true, 0, NULL,
