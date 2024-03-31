@@ -28,7 +28,6 @@
  */
 
 #include "config.h"
-#include <assert.h>
 #include <stdbool.h>
 #include "mutt/lib.h"
 #include "node_condition.h"
@@ -42,7 +41,7 @@ static int node_condition_render(const struct ExpandoNode *node,
                                  const struct ExpandoRenderData *rdata, struct Buffer *buf,
                                  int max_cols, void *data, MuttFormatFlags flags)
 {
-  assert(node->type == ENT_CONDITION);
+  ASSERT(node->type == ENT_CONDITION);
 
   const struct ExpandoNode *node_cond = node_get_child(node, ENC_CONDITION);
 
@@ -74,8 +73,8 @@ struct ExpandoNode *node_condition_new(struct ExpandoNode *condition,
                                        struct ExpandoNode *if_true_tree,
                                        struct ExpandoNode *if_false_tree)
 {
-  assert(condition);
-  assert(if_true_tree);
+  ASSERT(condition);
+  ASSERT(if_true_tree);
 
   struct ExpandoNode *node = node_new();
 

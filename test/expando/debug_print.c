@@ -21,7 +21,6 @@
  */
 
 #include "config.h"
-#include <assert.h>
 #include <stdio.h>
 #include "debug/lib.h"
 #include "debug_print.h"
@@ -69,7 +68,7 @@ static void print_expando_node(FILE *fp, const struct ExpandoNode *node, int ind
         break;
 
       default:
-        assert(0 && "Unknown justification.");
+        ASSERT(0 && "Unknown justification.");
     }
     fprintf(fp, " (did=%d, uid=%d) (min=%d, max=%d, just=%s, leader=`%c`)\n",
             node->did, node->uid, fmt->min_cols, fmt->max_cols, just, fmt->leader);
@@ -84,7 +83,7 @@ static void print_expando_node(FILE *fp, const struct ExpandoNode *node, int ind
 
 static void print_pad_node(FILE *fp, const struct ExpandoNode *node, int indent)
 {
-  assert(node->ndata);
+  ASSERT(node->ndata);
   struct NodePaddingPrivate *priv = node->ndata;
 
   const char *pt = name_expando_pad_type(priv->pad_type);
@@ -114,7 +113,7 @@ static void print_condition_node(FILE *fp, const struct ExpandoNode *node, int i
 
 static void print_conditional_date_node(FILE *fp, const struct ExpandoNode *node, int indent)
 {
-  assert(node->ndata);
+  ASSERT(node->ndata);
   struct NodeCondDatePrivate *priv = node->ndata;
   fprintf(fp, "%*sCOND DATE: (did=%d, uid=%d)(period=`%c`, count=%d)\n", indent,
           "", node->did, node->uid, priv->period, priv->count);
@@ -167,7 +166,7 @@ static void print_node(FILE *fp, const struct ExpandoNode *node, int indent)
     break;
 
     default:
-      assert(0 && "Unknown node.");
+      ASSERT(0 && "Unknown node.");
   }
 }
 
