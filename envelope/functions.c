@@ -302,6 +302,7 @@ done:
  */
 static int op_envelope_edit_to(struct EnvelopeWindowData *wdata, int op)
 {
+  ASSERT(wdata->is_news);
   if (wdata->is_news)
     return FR_NO_ACTION;
   if (!edit_address_list(HDR_TO, &wdata->email->env->to))
